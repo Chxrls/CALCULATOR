@@ -2,7 +2,6 @@ from tkinter import *
 import math as m
 
 def button_detect(number):
-    
     global text_variable
 
     text_variable = text_variable + str(number)
@@ -16,17 +15,17 @@ def equals():
         answer = str(eval(text_variable))
         text_display.set(answer)
         text_variable = answer
+        error.config(text="")
 
     except SyntaxError:
         text_display.set("")
         text_variable = ""
         error.config(text="SYNTAX ERROR")
 
-
     except ZeroDivisionError:
         text_display.set("get some help")
         text_variable = ""
-        error.config(text="DIVISION BY 0 ERROR")
+        error.config(text="YOU CAN'T DIVIDE BY ZERO")
 
 def square():
     global text_variable
@@ -35,6 +34,7 @@ def square():
        sqrtnum = float(text_variable)
        sqrtresult = m.sqrt(sqrtnum)
        text_display.set(sqrtresult)
+       error.config(text="SQUARE ROOT")
 
     except:
         text_display.set("")
@@ -45,6 +45,8 @@ def clear():
     global text_variable
     text_display.set("")
     text_variable = ""
+    error.config(text="")
+
 
 calculator = Tk()
 calculator.title("Calculator | Charls")
@@ -95,37 +97,37 @@ num9.grid(row=3,column=2)
 num0 = Button(frame,text=0,font=("Arial",10),width=6,height=3,bg="#91a6c7",command=lambda: button_detect(0))
 num0.grid(row=3,column=3)
 
-dot = Button(frame,text=".",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=lambda: button_detect("."))
+dot = Button(frame,text="•",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=lambda: button_detect("."))
 dot.grid(row=3,column=5)
 
 #operators
-add = Button(frame,text="+",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=lambda: button_detect("+"))
+add = Button(frame,text="+",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=lambda: button_detect("+"))
 add.grid(row=1,column=4)
 
-subtract = Button(frame,text="-",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=lambda: button_detect("-"))
+subtract = Button(frame,text="—",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=lambda: button_detect("-"))
 subtract.grid(row=1,column=5)
 
-multiply = Button(frame,text="x",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=lambda: button_detect("*"))
+multiply = Button(frame,text="x",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=lambda: button_detect("*"))
 multiply.grid(row=2,column=4)
 
-divide = Button(frame,text="÷",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=lambda: button_detect("/"))
+divide = Button(frame,text="÷",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=lambda: button_detect("/"))
 divide.grid(row=2,column=5)
 
-exponent = Button(frame,text="^",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=lambda: button_detect("**"))
+exponent = Button(frame,text="^",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=lambda: button_detect("**"))
 exponent.grid(row=1,column=6)
 
-squarer = Button(frame,text="√",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=square)
+squarer = Button(frame,text="√",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=square)
 squarer.grid(row=2,column=6)
 
-result = Button(frame,text="=",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=equals)
+result = Button(frame,text="=",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=equals)
 result.grid(row=3,column=4)
 
 #delete
-delete = Button(frame,text="clear",font=("Arial",10),width=6,height=3,bg="#91a6c7",command=clear)
+delete = Button(frame,text="clear",font=("Arial",10),width=6,height=3,bg="#5ca3bd",command=clear)
 delete.grid(row=3,column=6)
 
 #error display
-error = Label(font=("Arial",15),width=23,height=3)
+error = Label(font=("Arial",15),width=30,height=3)
 error.pack()
 
 calculator.mainloop()
