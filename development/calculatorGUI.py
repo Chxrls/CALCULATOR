@@ -14,7 +14,7 @@ def equals():
     global text_variable
 
     try:
-        answer = str(eval(text_variable))
+        answer = eval(text_variable)
         text_display.set(answer)
         text_variable = answer
 
@@ -37,8 +37,8 @@ def square():
     global text_variable
 
     try:
-       sqrtnum = text_variable
-       sqrtresult = m.sqrt(sqrtnum)
+#       sqrtnum = text_variable
+       sqrtresult = m.sqrt(text_variable)
        text_display.set(sqrtresult)
        error.config(text="SQUARE ROOT")
 
@@ -57,8 +57,8 @@ calculator = Tk()
 calculator.title("Calculator | Charls")
 calculator.geometry("420x300")
 calculator.resizable(0,0)
-icon = PhotoImage(file='calculator.png')
-calculator.iconphoto(True,icon)
+#icon = PhotoImage(file='calculator.png')
+#calculator.iconphoto(True,icon)
 
 text_variable = ""
 
