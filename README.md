@@ -1,1 +1,1 @@
-A full fledge calculator made in 100% in python :)
+A full fledge calculator made 100% in python :)
