@@ -57,8 +57,8 @@ calculator = Tk()
 calculator.title("Calculator | Charls")
 calculator.geometry("420x300")
 calculator.resizable(0,0)
-#icon = PhotoImage(file='calculator.png')
-#calculator.iconphoto(True,icon)
+icon = PhotoImage(file='calculator.png')
+calculator.iconphoto(True,icon)
 
 text_variable = ""
 
