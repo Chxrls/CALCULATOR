@@ -8,7 +8,6 @@ def button_detect(number):
 
     text_variable = text_variable + str(number)
     text_display.set(text_variable)
-#    error.config(text="INPUT DETECTED")
 
 def equals():
     global text_variable
@@ -37,8 +36,8 @@ def square():
     global text_variable
 
     try:
-#       sqrtnum = text_variable
-       sqrtresult = m.sqrt(text_variable)
+       sqrtnum = float(text_variable)
+       sqrtresult = m.sqrt(sqrtnum)
        text_display.set(sqrtresult)
        error.config(text="SQUARE ROOT")
 
@@ -55,7 +54,7 @@ def clear():
 
 calculator = Tk()
 calculator.title("Calculator | Charls")
-calculator.geometry("420x300")
+calculator.geometry("420x265")
 calculator.resizable(0,0)
 #icon = PhotoImage(file='calculator.png')
 #calculator.iconphoto(True,icon)
