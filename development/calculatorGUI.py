@@ -1,12 +1,16 @@
-from os import execv
 from tkinter import *
 import math as m
-from webbrowser import get
 
-def button_detect(number):
+def button_detect(value):
     global text_variable
 
-    text_variable = text_variable + str(number)
+    operators = ("*","/","+","**","=")
+    if(not text_variable):
+        if (value in operators):
+            error.config(text="INPUT NUMBER/DIGIT FIRST")
+            return 1
+
+    text_variable = text_variable + str(value)
     text_display.set(text_variable)
 
 def equals():
@@ -16,6 +20,7 @@ def equals():
         answer = eval(text_variable)
         text_display.set(answer)
         text_variable = answer
+        error.config(text="")
 
     except SyntaxError:
         text_display.set("")
@@ -28,7 +33,7 @@ def equals():
         error.config(text="UNDEFINED")
 
     except TypeError:
-        text_display.set("")
+        text_display.set(text_variable)
         text_variable = ""
         error.config(text="USE CORRECT OPERATORS")
 
@@ -52,10 +57,19 @@ def clear():
     text_variable = ""
     error.config(text="")
 
+def backspace():
+    global text_variable
+
+    window.delete(len(text_display.get())-1, END)
+    text_variable = window.get()
+    text_display.set(text_variable)
+    error.config(text="")
+
 calculator = Tk()
 calculator.title("Calculator | Charls")
-calculator.geometry("420x265")
+calculator.geometry("420x310")
 calculator.resizable(0,0)
+
 #icon = PhotoImage(file='calculator.png')
 #calculator.iconphoto(True,icon)
 
@@ -63,9 +77,10 @@ text_variable = ""
 
 text_display = StringVar()
 
-label = Label(calculator,textvariable=text_display,bg="#c1cbdb",font=("Arial",25,"bold"),bd=10,relief=SUNKEN, width=33)
-label.pack()
+window = Entry(calculator,textvariable=text_display,bg="#c1cbdb",font=("Arial",25,"bold"),bd=10,relief=SUNKEN,width=33)
+window.pack()
 frame = Frame(calculator)
+frame.config(background="#c1cbdb")
 frame.pack()
 
 #digits
@@ -94,10 +109,10 @@ num8 = Button(frame,text=8,font=("Arial",10),width=6,height=3,bd=3,bg="#91a6c7",
 num8.grid(row=3,column=2)
 
 num9 = Button(frame,text=9,font=("Arial",10),width=6,height=3,bd=3,bg="#91a6c7",command=lambda: button_detect(9))
-num9.grid(row=3,column=2)
+num9.grid(row=3,column=3)
 
 num0 = Button(frame,text=0,font=("Arial",10),width=6,height=3,bd=3,bg="#91a6c7",command=lambda: button_detect(0))
-num0.grid(row=3,column=3)
+num0.grid(row=4,column=2)
 
 dot = Button(frame,text="•",font=("Arial",10),width=6,height=3,bd=3,bg="#5ca3bd",command=lambda: button_detect("."))
 dot.grid(row=3,column=5)
@@ -134,11 +149,10 @@ closep.grid(row=2,column=7)
 delete = Button(frame,text="clear",font=("Arial",10),width=6,height=3,bd=3,bg="#5ca3bd",command=clear)
 delete.grid(row=3,column=6)
 
-#backspc = Button(frame,text="<-",font=("Arial",10),width=6,height=3,bd=3,bg="#5ca3bd",command=backspace)
-#backspc.grid(row=3,column=7)
+backspc = Button(frame,text="<-",font=("Arial",10),width=6,height=3,bd=3,bg="#5ca3bd",command=backspace)
+backspc.grid(row=3,column=7)
 
 #error display
-error = Label(font=("Arial",10),width=30,height=3)
-error.pack()
-
+error = Label(font=("Arial",15,"bold"),bg="#c1cbdb",width=23,height=2)
+error.place(x=120,y=250)
 calculator.mainloop()
