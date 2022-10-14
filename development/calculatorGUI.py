@@ -10,7 +10,7 @@ def button_detect(value):
             error.config(text="INPUT NUMBER/DIGIT FIRST")
             return 1
 
-    text_variable = text_variable + str(value)
+    text_variable = window.get() + str(value)
     text_display.set(text_variable)
 
 def equals():
@@ -153,6 +153,6 @@ backspc = Button(frame,text="<-",font=("Arial",10),width=6,height=3,bd=3,bg="#5c
 backspc.grid(row=3,column=7)
 
 #error display
-error = Label(font=("Arial",15,"bold"),bg="#c1cbdb",width=23,height=2)
+error = Label(font=("Arial",10,"bold"),bg="#c1cbdb",width=30,height=3)
 error.place(x=120,y=250)
 calculator.mainloop()
