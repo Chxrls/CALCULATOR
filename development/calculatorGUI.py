@@ -5,7 +5,7 @@ def button_detect(value):
     global text_variable
 
     operators = ("*","/","+","**","=")
-    if(not text_variable):
+    if(not window.get()):
         if (value in operators):
             error.config(text="INPUT NUMBER/DIGIT FIRST")
             return 1
@@ -17,7 +17,7 @@ def equals():
     global text_variable
 
     try:
-        answer = eval(text_variable)
+        answer = eval(window.get())
         text_display.set(answer)
         text_variable = answer
         error.config(text="")
@@ -53,6 +53,7 @@ def square():
 
 def clear():
     global text_variable
+    
     text_display.set("")
     text_variable = ""
     error.config(text="")
